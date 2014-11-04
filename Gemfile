@@ -19,5 +19,10 @@ group :development, :test do
   gem 'web-console', '~> 2.0.0.beta4'
 
   gem 'spring'
+
 end
 
+group :development do
+	gem "faker"
+	gem 'pry-rails'
+end

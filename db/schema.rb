@@ -16,6 +16,7 @@ ActiveRecord::Schema.define(version: 20141104082657) do
   create_table "products", force: true do |t|
     t.string   "name",        limit: 255
     t.text     "description", limit: 65535
+    t.float    "price",       limit: 24
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
   end
