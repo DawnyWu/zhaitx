@@ -5,6 +5,9 @@ Rails.application.routes.draw do
                                    sign_out: 'logout', 
                                    sign_up: 'register' }
 
+  resources :cart ,only: :show
+  put 'add/:movie_id', to: 'cart#add', as: :add_to
+  put 'remove/:movie_id', to: 'cart#remove', as: :remove_from
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
