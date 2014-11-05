@@ -1,7 +1,7 @@
 <div class="ui  inverted menu">
-  <a class="active item">
-    <i class="home icon"></i> Home
-  </a>
+  <%= link_to products_path,class: "item" do %>
+     <i class="home icon"></i> 主页
+  <% end %>
   <a class="item">
     <i class="mail icon"></i> Messages
   </a>
@@ -23,6 +23,10 @@
 
 	    <%= link_to new_user_session_path ,class: "item" do %>
 				  登陆
+	    <% end %>
+
+	    <%= link_to new_user_session_path ,class: "item" do %>
+				 <i class="cart icon"></i>  1
 	    <% end %>
 
   </div>
