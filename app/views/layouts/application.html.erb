@@ -7,9 +7,12 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-	<p class="notice"><%= notice %></p>
-  <p class="alert"><%= alert %></p>
-
+  <%= render partial: 'layouts/menu' %>
+  <% if notice%>
+	<p class="ui yellow message"><%= notice %></p>
+	<% elseif %>
+  <p class="ui red message"><%= alert %></p>
+  <% end %>
 <%= yield %>
 
 </body>

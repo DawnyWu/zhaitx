@@ -1,0 +1,29 @@
+<div class="ui  inverted menu">
+  <a class="active item">
+    <i class="home icon"></i> Home
+  </a>
+  <a class="item">
+    <i class="mail icon"></i> Messages
+  </a>
+  <a class="item">
+    <i class="user icon"></i> Friends
+  </a>
+
+  <div class="right menu">
+    <div class="item">
+      <div class="ui icon input">
+        <input type="text" placeholder="Search...">
+        <i class="search link icon"></i>
+      </div>
+    </div>
+
+	    <%= link_to new_user_registration_path,class: "item" do %>
+				  注册
+	    <% end %>
+
+	    <%= link_to new_user_session_path ,class: "item" do %>
+				  登陆
+	    <% end %>
+
+  </div>
+</div>

@@ -8,6 +8,7 @@
 50.times do |i|
 	Product.create(name: Faker::Lorem.word,
 								 description: Faker::Lorem.paragraph,
-								 price:  Faker::Commerce.price
+								 price:  Faker::Commerce.price,
+								 image: Faker::Avatar.image
 								 )
 end
