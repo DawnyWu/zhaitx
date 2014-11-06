@@ -1,32 +1,40 @@
-<div class="ui fixed  inverted menu">
-  <%= link_to products_path,class: "item" do %>
-     <i class="home icon"></i> 主页
-  <% end %>
-  <div class="right menu">
-    <div class="item">
-      <div class="ui icon input">
-        <input type="text" placeholder="Search...">
-        <i class="search link icon"></i>
-      </div>
-    </div>
-			
-			<% if user_signed_in? %>
-				 <%= link_to new_user_registration_path,class: "item" do %>
-					  <i class="user icon"></i><%= current_user.email %>
-		    <% end %>
-			<% else %>
-		    <%= link_to new_user_registration_path,class: "item" do %>
-					  注册
-		    <% end %>
+<div class="ui fixed inverted menu">
+	<%= link_to products_path,class: "item" do %>
+	<i class="home icon"></i> 主页
+	<% end %>
+	<div class="right menu">
+		<div class="item">
+			<div class="ui icon input">
+				<input type="text" placeholder="Search...">
+				<i class="search link icon"></i>
+			</div>
+		</div>
+		<% if user_signed_in? %>
 
-		    <%= link_to new_user_session_path ,class: "item" do %>
-					  登陆
-		    <% end %>
-      <% end %>
+			<%= link_to new_user_registration_path, class: "item" do %>
+				<i class="user icon"></i><%= current_user.email %>
+			<% end %>
 
-	    <%= link_to '#' ,class: "item" do %>
-				 <i class="cart icon"></i><span id="cart"></span>
-	    <% end %>
+			<%= link_to destroy_user_session_path, method: :delete, class: "item" do %>
+				登出
+			<% end %>
+		<% else %>
+			<%= link_to new_user_registration_path,class: "item" do %>
+			注册
+			<% end %>
+			<%= link_to new_user_session_path ,class: "item" do %>
+			登陆
+			<% end %>
+		<% end %>
 
-  </div>
+		<%= link_to cart_path ,class: "item" do %>
+		<i class="cart icon"></i><span id="cart">		
+			<% if current_user.present? %>
+  		<%= $redis.scard "cart#{current_user.id}" %>
+  		<% end %>			
+		</span>
+		<% end %>
+		<div class="item"></div>
+
+</div>
 </div>

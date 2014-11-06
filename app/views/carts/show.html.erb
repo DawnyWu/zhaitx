@@ -1,0 +1,24 @@
+
+<div class="ui grid">
+ 	<div class="row">
+ 		<div class="ui two wide column">
+ 		</div>
+		 	<div class="ui twelve wide column">
+				<table class="ui table segment">
+					<tbody>
+						<% @cart_products.each do |p|%>
+						<tr>
+						 <td><%= image_tag p.image ,class: "ui small image "%></td>
+						 <td><%= p.name %></td>
+						 <td><%= p.price %></td>
+						 <td>删除</td>
+						</tr>
+						<% end %>
+					</tbody>
+				</table>
+			</div>
+		<div class="ui two column">
+		</div>
+	</div>
+</div>
+
