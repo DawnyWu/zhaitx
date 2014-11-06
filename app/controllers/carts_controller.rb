@@ -19,6 +19,9 @@ class CartsController < ApplicationController
 
 	def remove
 		$redis.srem current_user_cart,params[:product_id]
+	  respond_to do |format|
+	  	format.js 
+	  end
 	end
 
 

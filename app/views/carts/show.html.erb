@@ -6,12 +6,13 @@
 		 	<div class="ui twelve wide column">
 				<table class="ui table segment">
 					<tbody>
-						<% @cart_products.each do |p|%>
+						<% @cart_products.each do |product,i|%>
 						<tr>
-						 <td><%= image_tag p.image ,class: "ui small image "%></td>
-						 <td><%= p.name %></td>
-						 <td><%= p.price %></td>
-						 <td>删除</td>
+						 <td><%= image_tag product.image ,class: "ui small image "%></td>
+						 <td><%= product.name %></td>
+						 <td><%= product.price %></td>
+						 <td><%= link_to "删除",remove_from_path(product),class: "remove",
+						 method: :put,remote: true %><td>
 						</tr>
 						<% end %>
 					</tbody>
@@ -22,3 +23,12 @@
 	</div>
 </div>
 
+<% content_for :javascript do%>
+	<script type="text/javascript">
+	$(document).ready(function () {
+		$('table').on('click','.remove',function(){
+			$(this).closest('tr').fadeOut();
+		})	
+	});
+	</script>
+<% end %>
