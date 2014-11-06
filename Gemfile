@@ -14,6 +14,7 @@ gem 'hiredis'
 gem 'semantic-ui-sass', github: 'doabit/semantic-ui-sass'
 gem 'annotate'
 gem 'nprogress-rails'
+gem 'kaminari'
 
 group :development, :test do
   gem 'byebug'

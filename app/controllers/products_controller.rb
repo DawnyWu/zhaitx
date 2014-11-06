@@ -2,7 +2,7 @@ class ProductsController < ApplicationController
   before_action :set_product, only: [:show, :edit, :update, :destroy]
   respond_to :html, :xml, :json
   def index
-    @products = Product.all
+    @products = Product.all.page params[:page]
     respond_with(@products)
   end
 
