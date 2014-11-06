@@ -1,14 +1,7 @@
-<div class="ui  inverted menu">
+<div class="ui fixed  inverted menu">
   <%= link_to products_path,class: "item" do %>
      <i class="home icon"></i> 主页
   <% end %>
-  <a class="item">
-    <i class="mail icon"></i> Messages
-  </a>
-  <a class="item">
-    <i class="user icon"></i> Friends
-  </a>
-
   <div class="right menu">
     <div class="item">
       <div class="ui icon input">
@@ -16,17 +9,23 @@
         <i class="search link icon"></i>
       </div>
     </div>
+			
+			<% if user_signed_in? %>
+				 <%= link_to new_user_registration_path,class: "item" do %>
+					  <i class="user icon"></i><%= current_user.email %>
+		    <% end %>
+			<% else %>
+		    <%= link_to new_user_registration_path,class: "item" do %>
+					  注册
+		    <% end %>
 
-	    <%= link_to new_user_registration_path,class: "item" do %>
-				  注册
-	    <% end %>
+		    <%= link_to new_user_session_path ,class: "item" do %>
+					  登陆
+		    <% end %>
+      <% end %>
 
-	    <%= link_to new_user_session_path ,class: "item" do %>
-				  登陆
-	    <% end %>
-
-	    <%= link_to new_user_session_path ,class: "item" do %>
-				 <i class="cart icon"></i>  1
+	    <%= link_to '#' ,class: "item" do %>
+				 <i class="cart icon"></i><span id="cart"></span>
 	    <% end %>
 
   </div>

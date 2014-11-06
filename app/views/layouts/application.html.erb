@@ -10,7 +10,8 @@
   <%= render partial: 'layouts/menu' %>
   <% if notice%>
 	<p class="ui yellow message"><%= notice %></p>
-	<% elseif %>
+	<% end %>
+	<% if alert %>
   <p class="ui red message"><%= alert %></p>
   <% end %>
 <%= yield %>

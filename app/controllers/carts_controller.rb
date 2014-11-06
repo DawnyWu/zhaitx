@@ -1,5 +1,6 @@
 class CartsController < ApplicationController
 	before_action :authenticate_user!
+	helper_method :current_user_cart
 
 	def show
 		cart_ids = $redis.smembers current_user_cart
@@ -8,6 +9,11 @@ class CartsController < ApplicationController
 
 	def add
 		$redis.sadd current_user_cart,params[:product_id]
+		#binding.pry
+	  #render json: $redis.scard(current_user_cart), status: 200
+	  respond_to do |format|
+	  	format.js 
+	  end
 	end
 
 	def remove
