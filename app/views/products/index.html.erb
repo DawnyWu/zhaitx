@@ -1,28 +1,16 @@
-<div class="ui items">
-  <% @products.each do |product| %>
-    <div class="item">
-      <div class="image">
-        <%= image_tag product.image %>
-      </div>
-      <div class="content">
-        <div class="name"><%= product.name %>:￥<%= product.price %></div>
+<div class="ui grid">
+  <div class="row">
 
-        <%= link_to add_to_path(product), method: :put,remote: true  do %>
-          <span class="ui right red mini button">
-          <i class="cart icon"></i>
-            Add to Cart
-          </span>
-        <% end %>
-    
-        <p class="description"><%= product.description.truncate(100) %></p>
-      </div>
+    <div class="ui three wide column">
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequatur accusantium voluptatibus deleniti quas impedit. Quod rerum, hic provident magni veritatis sit vitae atque blanditiis sed repudiandae, numquam voluptas eius iste!
     </div>
-  <% end %>
+
+    <div class="ui twelve wide column">  
+     <%= render partial: 'products'%>   
+     <%= paginate @products, :window => 1,:outer_window => 2 %>
+    </div>  
+  </div>
 </div>
-
-<%= paginate @products, :window => 1,:outer_window => 2 %>
-
-
 
 
 
@@ -38,3 +26,9 @@
 
 <%= link_to 'New Product', new_product_path %>
 
+
+<% content_for :javascript do %> 
+  <script type="text/javascript"> 
+    $('.ui.dropdown').dropdown();
+  </script>
+<% end %>

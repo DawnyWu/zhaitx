@@ -1,0 +1,21 @@
+<div class="ui four items">
+  <% @products.each do |product| %>
+    <div class="item">
+      <div class="image">
+        <%= image_tag product.image %>
+      </div>
+      <div class="content">
+        <div class="name"><%= product.name %></div>
+        ￥<%= product.price %>
+        <%= link_to add_to_path(product), method: :put,remote: true  do %>
+          <span class="ui right red mini button">
+          <i class="cart icon"></i>
+            Add to Cart
+          </span>
+        <% end %>
+    
+        <p class="description"><%= product.description.truncate(100) %></p>
+      </div>
+    </div>
+  <% end %>
+</div>
