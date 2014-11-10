@@ -1,34 +1,84 @@
 
 <div class="ui grid">
- 	<div class="row">
- 		<div class="ui two wide column">
- 		</div>
-		 	<div class="ui twelve wide column">
-				<table class="ui table segment">
-					<tbody>
-						<% @cart_products.each do |product,i|%>
-						<tr>
-						 <td><%= image_tag product.image ,class: "ui small image "%></td>
-						 <td><%= product.name %></td>
-						 <td><%= product.price %></td>
-						 <td><%= link_to "删除",remove_from_path(product),class: "remove",
-						 method: :put,remote: true %><td>
+	<div class="row">
+
+		<div class="ui twelve wide column">
+			<table class="ui table segment">
+				<thead>
+					<th></th>
+					<th></th>
+					<th>价格</th>
+					<th>数量</th>
+					<th></th>
+					<th></th>
+				</thead>
+				<tbody>
+					<% @cart_products.each do |product,i|%>
+					<tr>
+						<td><%= image_tag product.image ,class: "ui small image "%></td>
+						<td ><%= product.name %></td>
+						<td class="td_price"><%= product.price %></td>
+						<td><%= select_tag "number", options_for_select((1..10).step(1)),class: 'number'	%></td>
+						<td><%= link_to "删除",remove_from_path(product),class: "remove",
+							method: :put,remote: true %><td>
 						</tr>
 						<% end %>
 					</tbody>
 				</table>
 			</div>
-		<div class="ui two column">
+
+			<div class="ui four wide column ">
+				<div class="ui segment">
+					<h2>小计:</h2>
+					(<span id="cart_number"></span>件商品)￥ <span id="cart_amount"></span>
+				</div>
+			</div>
 		</div>
 	</div>
-</div>
+
+
 
 <% content_for :javascript do%>
-	<script type="text/javascript">
-	$(document).ready(function () {
+<script type="text/javascript">
+	// 计算所有商品的价格
+	function countAmount (){
+		var price_array = $('.table').find('.td_price:visible');//jquery fadeout后元素仍然在网页上，用visible来选择
+		var Amount = 0;
+		$.each(price_array,function () {
+		var price = +$(this).text();
+		Amount = Amount + price;
+		})
+		$('#cart_amount').text(Amount);
+	}
+	// 计算所有商品的数量
+	function countNumber () {
+		var number_array = $('.table').find('.number:visible');
+		var sum=0;
+		$.each(number_array,function(){
+			var number = +$(this).val();
+			sum = sum + number;
+			$('#cart_number').text(sum);
+		});
+	}
+
+ 	$(document).ready(function () {
+ 		countAmount();
+ 		countNumber();
+
+		// 点击删除fadeOut效果
 		$('table').on('click','.remove',function(){
-			$(this).closest('tr').fadeOut();
-		})	
-	});
-	</script>
+			$(this).closest('tr').fadeOut("slow",function () {
+		 		countNumber();	
+		 		countAmount();
+			});
+		})
+
+		// 点击select数量,改变	商品总数
+		$('.table').on('change','.number',function () {
+	 		countAmount();
+	 		countNumber();
+		});
+		});
+
+</script>
 <% end %>
