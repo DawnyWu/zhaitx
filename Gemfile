@@ -16,6 +16,8 @@ gem 'annotate'
 gem 'nprogress-rails'
 gem 'kaminari'
 gem "autoprefixer-rails"
+gem 'carrierwave'
+gem "mini_magick"
 
 group :development, :test do
   gem 'byebug'
