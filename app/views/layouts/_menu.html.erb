@@ -1,23 +1,38 @@
-<div class="ui fixed inverted menu">
+<div class="ui  menu">
 	<%= link_to products_path,class: "item" do %>
 	<i class="home icon"></i> 主页
 	<% end %>
 	<div class="right menu">
+	<!-- Search -->
 		<div class="item">
 			<div class="ui icon input">
 				<input type="text" placeholder="Search...">
 				<i class="search link icon"></i>
 			</div>
 		</div>
-		<% if user_signed_in? %>
 
-			<%= link_to new_user_registration_path, class: "item" do %>
+    <!-- Cart -->
+		<%= link_to cart_path ,class: "item" do %>
+		<i class="cart icon"></i><span id="cart">		
+			<% if current_user.present? %>
+  		<%= $redis.scard "cart#{current_user.id}" %>
+  		<% end %>			
+		</span>
+		<% end %>
+    <!-- User Account -->
+		<% if user_signed_in? %>   
+     <div class="ui dropdown item">
 				<i class="user icon"></i><%= current_user.email %>
-			<% end %>
+			  <i class="icon dropdown"></i>
 
-			<%= link_to destroy_user_session_path, method: :delete, class: "item" do %>
-				登出
-			<% end %>
+				<div class="menu">
+		      <%= link_to "我的订单","#",class: "item" %>		
+		      <%= link_to "个人资料","#",class: "item" %>		
+	  			<%= link_to destroy_user_session_path, method: :delete, class: "item" do %>
+						登出
+					<% end %>
+	      </div>
+		 </div>
 		<% else %>
 			<%= link_to new_user_registration_path,class: "item" do %>
 			注册
@@ -26,25 +41,6 @@
 			登陆
 			<% end %>
 		<% end %>
-
-		<%= link_to cart_path ,class: "item" do %>
-		<i class="cart icon"></i><span id="cart">		
-			<% if current_user.present? %>
-  		<%= $redis.scard "cart#{current_user.id}" %>
-  		<% end %>			
-		</span>
-		<% end %>
-
-		<div class="item"></div>
-
-    <div class="ui dropdown item">
-      More <i class="icon dropdown"></i>
-      <div class="menu">
-        <a class="item"><i class="edit icon"></i> Edit Profile</a>
-        <a class="item"><i class="globe icon"></i> Choose Language</a>
-        <a class="item"><i class="settings icon"></i> Account Settings</a>
-      </div>
-    </div>
 
 	</div>
 </div>
