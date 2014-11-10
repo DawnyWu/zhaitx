@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141110164340) do
+ActiveRecord::Schema.define(version: 20141110171202) do
 
   create_table "addresses", force: true do |t|
     t.string   "university",   limit: 255
@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(version: 20141110164340) do
     t.string   "location",     limit: 255
     t.string   "user_name",    limit: 255
     t.string   "phone_number", limit: 255
+    t.integer  "user_id",      limit: 4
     t.datetime "created_at",               null: false
     t.datetime "updated_at",               null: false
   end

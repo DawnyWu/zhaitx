@@ -11,6 +11,6 @@ class AddressesController < ApplicationController
 	private
   def product_params
     params.require(:address).permit(:university, :campus, :location, 
-    																:user_name,:phone_number)
+    																:user_name,:phone_number,:user_id)
   end
 end
