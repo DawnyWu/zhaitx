@@ -1,0 +1,54 @@
+<div class="ui grid">
+  <div class="row">
+    <div class="ui eleven wide column">
+      <div class="ui form segment">
+        <%= form_tag create_address_path do %>
+         
+          <div class="two fields">
+            <div class="field">
+              <label>大学</label>
+              <%= text_field(:order, :school_name) %>
+            </div>
+
+            <div class="field">
+              <label>校区</label>
+              <div class="ui fluid selection dropdown">
+                <div class="text">北辰校区</div>
+                <i class="dropdown icon"></i>
+                <div class="menu">
+                  <div class="item" data-value="male">北辰校区</div>
+                  <div class="item" data-value="female">红桥校区</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="field">
+            <label>地址</label>
+            <%= text_field :order, :address %>
+          </div>
+
+          <div class="field">
+            <label>姓名</label>
+            <%= text_field(:order, :name) %>
+          </div>
+
+          <div class="field">
+            <label>联系电话</label>
+            <%= text_field(:order, :phone_number) %>
+          </div>
+        <%= submit_tag "创建配送地址",class: "ui blue submit button" %>
+       <% end %> 
+      </div>
+    </div>
+
+    <div class="ui five wide column">
+      
+    </div>
+  </div>
+</div>
+<% content_for :javascript do%>
+<script type="text/javascript">
+  $('.ui.dropdown').dropdown();
+</script>
+<% end %>

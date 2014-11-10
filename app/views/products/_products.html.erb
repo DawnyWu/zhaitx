@@ -6,14 +6,15 @@
       </div>
       <div class="content">
         <div class="name"><%= product.name %></div>
-        ￥<%= product.price %>
+        ￥<%= product.price %><br/>
+        <%= select_tag "number", options_for_select((1..10).step(1)),
+        class: 'number'  %>
         <%= link_to add_to_path(product), method: :put,remote: true  do %>
           <span class="ui right red mini button">
           <i class="cart icon"></i>
             Add to Cart
           </span>
         <% end %>
-    
         <p class="description"><%= product.description.truncate(100) %></p>
       </div>
     </div>

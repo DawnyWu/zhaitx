@@ -1,7 +1,6 @@
 
 <div class="ui grid">
 	<div class="row">
-
 		<div class="ui twelve wide column">
 			<table class="ui table segment">
 				<thead>
@@ -30,7 +29,9 @@
 			<div class="ui four wide column ">
 				<div class="ui segment">
 					<h2>小计:</h2>
-					(<span id="cart_number"></span>件商品)￥ <span id="cart_amount"></span>
+					(一共<span id="cart_number"></span>件商品)<br/>	
+					￥ <span id="cart_amount"></span>
+					<%= link_to "进入结算中心",new_address_path,class: "ui red button"%>
 				</div>
 			</div>
 		</div>
