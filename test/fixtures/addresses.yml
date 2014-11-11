@@ -1,17 +1,17 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  university: MyString
-  campus: MyString
-  location: MyString
-  user_name: MyString
-  phone_number: MyString
-  user_id: 1
+# one:
+#   university: MyString
+#   campus: MyString
+#   location: MyString
+#   user_name: MyString
+#   phone_number: MyString
+#   user_id: 1
 
-two:
-  university: MyString
-  campus: MyString
-  location: MyString
-  user_name: MyString
-  phone_number: MyString
-  user_id: 1
+# two:
+#   university: MyString
+#   campus: MyString
+#   location: MyString
+#   user_name: MyString
+#   phone_number: MyString
+#   user_id: 1
