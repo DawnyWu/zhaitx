@@ -65,7 +65,7 @@ class CartsController < ApplicationController
 	  hash.each do |h,v|
 	   	sum = (Product.find(h).price)*(v.to_f)+sum
 	  end
-	  sum
+	  sum.round(2)
 	end
 	
 end
