@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   put 'add/:product_id', to: 'carts#add', as: :add_to
   put 'remove/:product_id', to: 'carts#remove', as: :remove_from
   put 'change_quantity',to: 'carts#change_quantity',as: :change_quantity
+  put 'calculate_amount',to: 'carts#amount',as: :calculate_amount
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

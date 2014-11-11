@@ -1,1 +1,2 @@
-$('#cart').text(<%= $redis.hlen(current_user_cart) %>)
+$('#cart').text(<%= $redis.hlen(current_user_cart) %>);
+$('#cart_number').text(<%= $redis.hlen(current_user_cart) %>);

@@ -16,7 +16,7 @@
 						<td><%= image_tag product.image ,class: "ui small image "%></td>
 						<td ><%= product.name %></td>
 						<td class="td_price"><%= product.price %></td>
-						<td><%= select_tag "number", options_for_select((1..10).step(1)),class: 'number'	%></td>
+						<td><%= select_tag "number", options_for_select((1..10).step(1), $redis.hget(current_user_cart,product.id)),class: 'number'	%></td>
 						<td><%= link_to "删除",remove_from_path(product),class: "remove",
 							method: :put,remote: true %><td>
 						</tr>
@@ -28,9 +28,9 @@
 			<div class="ui four wide column ">
 				<div class="ui segment">
 					<h2>小计:</h2>
-					(一共<span id="cart_number"></span>件商品)<br/>	
-					￥ <span id="cart_amount"></span>
-					<%= link_to "进入结算中心",new_address_path,class: "ui red button"%>
+					一共<span id="cart_number"><%= @cart_quantity %></span>件商品)<br/>	
+					￥ <span id="cart_amount"><%= @cart_amount %></span><br/>
+					<%= link_to "进入结算中心",new_address_path,class: "ui red mini button"%>
 				</div>
 			</div>
 		</div>
@@ -50,7 +50,14 @@
 		})
 		$('#cart_amount').text(Amount);
 	}
-	// 计算所有商品的数量,单个商品数量并未计算
+	// ajax计算amount,改变页面amount
+	function countAmount2 () {
+		$.ajax({
+			url:"/calculate_amount",
+			type:"PUT"
+		});
+	}
+	// 改变redis数据库中商品数量 
 	function countNumber () {
 		var number_array = $('.table').find('.number:visible');
 		var sum=0;
@@ -58,41 +65,40 @@
 			var number = +$(this).val();
 			sum = sum + number;
 			$('#cart_number').text(sum);
+	    $('#cart').text(sum);
 		});
 	}
 
- 	$(document).ready(function () {
- 		countAmount();
- 		countNumber();
+	$(document).ready(function () {
+ 		// countAmount();
+ 		// countNumber();
+ 		// countAmount2();
 
-		// 点击删除fadeOut效果
+		// 点击remove,fadeOut效果
+		// ajax请求已有rails发送，
 		$('table').on('click','.remove',function(){
 			$(this).closest('tr').fadeOut("slow",function () {
-		 		countNumber();	
-		 		countAmount();
+				countNumber();
+		 		countAmount2();
 			});
 		})
 
 		// 点击select数量,改变	商品总数
 		$('.table').on('change','.number',function () {
-	 		countAmount();
-	 		countNumber();
-      
-      // alert($(this).closest('tr').data('id'));
+	 	  // 要注意顺序，先改变单个商品数量，在计算总价
+      // 发送改变redis数据库中，单个商品数量的ajax请求
       var product_id = $(this).closest('tr').data('id');
       var select_number = $(this).val();
-	 		jQuery.ajax({
+	 		jQuery.ajax({   // ajax改变总量，changeQuantity
 		    url: "/change_quantity",
 		    type: "PUT",
 		    data: {"product_id": product_id,
 							    "number" : select_number },
-		    // dataType: "html"
-		    success: function(data) {
-		    }
-		  });
-
-
-		});
+			  success: function(data) {
+			  	countAmount2(); // 修改单个商品数量，成功后改变商品总价
+        }
+			  });
+			});
 		});
 
 </script>

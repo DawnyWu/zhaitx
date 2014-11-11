@@ -15,7 +15,8 @@
 		<%= link_to cart_path ,class: "item" do %>
 		<i class="cart icon"></i><span id="cart">		
 			<% if current_user.present? %>
-  		<%= $redis.hlen "cart#{current_user.id}" %>
+  		<%#= $redis.hlen "cart#{current_user.id}" %>
+  	  <%= cart_quantity %>
   		<% end %>			
 		</span>
 		<% end %>
