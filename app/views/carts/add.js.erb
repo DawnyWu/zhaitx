@@ -1,1 +1,1 @@
-$('#cart').text(<%= $redis.scard(current_user_cart) %>)
+$('#cart').text(<%= $redis.hlen(current_user_cart) %>)
