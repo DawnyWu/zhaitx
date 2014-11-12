@@ -2,7 +2,6 @@ class CartsController < ApplicationController
 	before_action :authenticate_user!
 	helper_method :current_user_cart,:cart_quantity,:cart_amount
 	helper_method :cart_size	
-
 	def show
 		cart_ids = $redis.hkeys current_user_cart
 		@cart_products = Product.find(cart_ids)

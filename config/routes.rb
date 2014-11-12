@@ -20,7 +20,8 @@ Rails.application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  get 'address',to: 'addresses#new',as: :new_address
+  get '/address',to: 'addresses#new',as: :new_address
+  get '/addresses',to: 'addresses#index',as: :select_address
   post '/address',to: 'addresses#create',as: :create_address
 
   get '/', to: 'products#index'

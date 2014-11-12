@@ -1,0 +1,25 @@
+<h2>选择配送地址</h2>
+<% if @addresses.present? %>
+ 显示用户所有地址并选择一个<br/>
+  <% @addresses.each do |address| %>
+ 		<%= address.university %>
+		<%= address.campus %>
+		<%= address.location %><br/>
+		<%= address.user_name %>
+		<%= address.phone_number %><br/>
+		<button class="ui mini red button">
+		配送到这个地址
+		</button><br/>
+	<% end %>
+<%= link_to "创建新的地址",new_address_path %>
+<% else %>
+ <h3>创建一个新的地址</h3>
+ <%= render partial: "addresses/address_form"%>
+ 
+<% end %>
+
+<% content_for :javascript do%>
+<script type="text/javascript">
+  $('.ui.dropdown').dropdown();
+</script>
+<% end %>
