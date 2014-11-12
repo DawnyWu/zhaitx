@@ -1,3 +1,122 @@
-orders#
-<%= @address.location %>
-<%= @address.university %>
+<div class="ui grid">
+	<div class="row">
+
+		<div class="ui two wide column">
+		</div>
+
+		<div class="ui twelve wide column">
+			<br>
+			<h3 class="ui black block header">收货人信息</h3>
+			<div id="order_address">
+			</div>
+			<% if current_user.addresses.present? %>
+
+			<% current_user.addresses.each do |address| %>
+			<%= address.university %>
+			<%= address.campus %>
+			<%= address.location %><br/>
+			<%= address.user_name %>
+			<%= address.phone_number %><br>
+			<% end %>
+			<%= link_to "修改配送地址" %>
+			<% else %>
+
+			<div id="order_create_from">
+				<h2>创建配送地址</h2>
+
+	<!-- 创建新的地址
+	建个新建地址的form，建成后ajax返回地址 -->
+	<div class="ui form segment">
+		<%= form_tag create_address_path,remote: true do %>         
+		<div class="two fields">
+			<div class="field">
+				<label>大学</label>
+				<%= text_field(:address, :university) %>
+			</div>
+			<div class="field">
+				<label>校区</label>
+				<div class="ui fluid selection dropdown">
+					<div class="text">北辰校区</div>
+					<i class="dropdown icon"></i>
+					<input type="hidden" name="address[campus]">
+					<div class="menu">
+						<div class="item" data-value="male">北辰校区</div>
+						<div class="item" data-value="female">红桥校区</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="field">
+			<label>地址</label>
+			<%= text_field :address, :location %>
+		</div>
+		<div class="field">
+			<label>姓名</label>
+			<%= text_field(:address, :user_name) %>
+		</div>
+		<div class="field">
+			<label>联系电话</label>
+			<%= text_field(:address, :phone_number) %>
+		</div>
+		<%= hidden_field(:address, :user_id, value: current_user.id) %>
+		<%= submit_tag "创建配送地址",class: "ui blue submit button" %>
+		<% end %> 
+	</div>
+</div>
+
+
+
+
+
+<% end %>
+<h3 class="ui black block header">商品清单</h3>
+<table class="ui table segment">
+	<thead>
+		<!-- image -->
+		<!-- <th>商品图片</th> -->
+		<!-- product name -->
+<!-- 		<th>商品名称</th>
+		<th>价格</th>
+		<th>数量</th> -->
+	</thead>
+	<tbody>
+		<% cart_products.each do |product,i|%>
+		<tr data-id=<%= product.id %> >
+			<td><%= image_tag product.image ,class: "ui mini image "%></td>
+			<td ><%= product.name %></td>
+			<td class="td_price"><%= product.price %></td>
+			<td><%= $redis.hget(current_user_cart,product.id) %></td>
+		</tr>
+		<% end %>
+	</tbody>
+</table>
+<%= link_to "修改购物车商品" %>
+<h3 class="ui black block header">附言</h3>
+<div class="ui form">
+	<div class="field">
+		<%= text_field_tag :order,nil,placeholder: "还有什么需要特殊交代的么？" %>
+	</div>
+</div>
+
+<%= link_to "提交订单",create_order_path,class: "ui red button" %>
+</div>
+</div>
+
+
+<div class="ui two wide column">	
+</div>
+
+</div>
+</div>
+current_user address size:<%= current_user.addresses.size %><br/>
+current_user id:<%= current_user.id %><br/>
+current_user_cart: <%= current_user_cart %><br>
+cart_quantity: <%= cart_quantity %> <br>
+cart_amount: <%= cart_amount %> <br>
+cart_products species : <%= cart_products.size %>
+
+<% content_for :javascript do %> 
+<script type="text/javascript"> 
+	$('.ui.dropdown').dropdown();
+</script>
+<% end %>

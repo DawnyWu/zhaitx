@@ -1,27 +1,40 @@
 <% if current_user.addresses.present? %>
-  <!-- 显示已经有的地址 -->
-  <h1>hello</h1>
-  <% else %>
+ current_user.addresses.present
+<div class="ui grid segment">
+  <div class="row">
+    <div class="ten wide column">
+     Address:
+      <% current_user.addresses.each do |address| %>  
+                <%= address.university %>
+                <%= address.campus %>
+                <%= address.location %><br/>
+                <%= address.user_name %>
+                <%= address.phone_number %>
+      <% end %>   
+    </div>
+    <div class="six wide column">
+      hello
+    </div>
+  </div>
+</div>
+<% else %>
   <!-- 显示创建地址表单 -->
-  <h2>world</h2>
-  <% end %>
+  <h2>Address Unpresent</h2>
+<% end %>
 
 
 <div class="ui grid">
   <div class="row">
     <div class="ui eleven wide column">
       <div class="ui form segment">
-        <%= form_tag create_address_path do %>
-         
+        <%= form_tag create_address_path do %>         
           <div class="two fields">
             <div class="field">
               <label>大学</label>
               <%= text_field(:address, :university) %>
             </div>
-
             <div class="field">
               <label>校区</label>
-
              <div class="ui fluid selection dropdown">
                 <div class="text">北辰校区</div>
                 <i class="dropdown icon"></i>
@@ -33,30 +46,25 @@
               </div>
             </div>
           </div>
-
           <div class="field">
             <label>地址</label>
             <%= text_field :address, :location %>
           </div>
-
           <div class="field">
             <label>姓名</label>
             <%= text_field(:address, :user_name) %>
           </div>
-
           <div class="field">
             <label>联系电话</label>
             <%= text_field(:address, :phone_number) %>
           </div>
-
           <%= hidden_field(:address, :user_id, value: current_user.id) %>
         <%= submit_tag "创建配送地址",class: "ui blue submit button" %>
        <% end %> 
       </div>
     </div>
 
-    <div class="ui five wide column">
-      
+    <div class="ui five wide column">    
     </div>
   </div>
 </div>

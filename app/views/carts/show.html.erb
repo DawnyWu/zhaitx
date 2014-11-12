@@ -1,6 +1,11 @@
 <div class="ui grid">
 	<div class="row">
+
 		<div class="ui twelve wide column">
+
+			<h2 class="ui header">
+    <i class="cart icon"></i>  购物车
+  </h2>
 			<table class="ui table segment">
 				<thead>
 					<th></th>
@@ -30,7 +35,7 @@
 					<h2>小计:</h2>
 					一共<span id="cart_number"><%= @cart_quantity %></span>件商品)<br/>	
 					￥ <span id="cart_amount"><%= @cart_amount %></span><br/>
-					<%= link_to "进入结算中心",new_address_path,class: "ui red mini button"%>
+					<%= link_to "进入结算中心",orders_new_path,class: "ui red mini button"%>
 				</div>
 			</div>
 		</div>

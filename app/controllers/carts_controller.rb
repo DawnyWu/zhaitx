@@ -1,6 +1,5 @@
 class CartsController < ApplicationController
 	before_action :authenticate_user!
-	# after_action :test
 	helper_method :current_user_cart,:cart_quantity,:cart_amount
 	helper_method :cart_size	
 

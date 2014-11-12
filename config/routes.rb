@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+  get 'orders/new',as: :orders_new
+  get 'orders/create'
+
+  get 'orders/show'
+
   resources :products
 
   devise_for :users, path_names: { sign_in: 'login',
@@ -20,7 +25,7 @@ Rails.application.routes.draw do
 
   get '/', to: 'products#index'
   get '/order', to: 'orders#new', as: :new_order
-  post '/create_order', to: 'orders#create', as: :crate_order
+  post '/create_order', to: 'orders#create', as: :create_order
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

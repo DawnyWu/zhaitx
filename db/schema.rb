@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141110171202) do
+ActiveRecord::Schema.define(version: 20141112033719) do
 
   create_table "addresses", force: true do |t|
     t.string   "university",   limit: 255
@@ -23,6 +23,17 @@ ActiveRecord::Schema.define(version: 20141110171202) do
     t.datetime "created_at",               null: false
     t.datetime "updated_at",               null: false
   end
+
+  create_table "orders", force: true do |t|
+    t.integer  "address_id", limit: 4
+    t.string   "remark",     limit: 255
+    t.integer  "user_id",    limit: 4
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
+  add_index "orders", ["address_id"], name: "index_orders_on_address_id", using: :btree
+  add_index "orders", ["user_id"], name: "index_orders_on_user_id", using: :btree
 
   create_table "products", force: true do |t|
     t.string   "name",        limit: 255

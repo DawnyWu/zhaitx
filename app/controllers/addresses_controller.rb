@@ -1,11 +1,14 @@
 class AddressesController < ApplicationController
 	def create
-		binding.pry
-
 		@address = Address.new(product_params)
 		@address.save
 
-		redirect_to controller: "orders",action: "new"
+		# redirect_to controller: "orders",action: "new"
+
+		respond_to do |format|
+			format.html {render 'new'}
+ 	  	format.js 
+ 	  end
 	end
 
 	private
