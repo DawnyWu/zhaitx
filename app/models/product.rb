@@ -14,4 +14,5 @@
 class Product < ActiveRecord::Base
 	paginates_per 12
 	mount_uploader :image, ImageUploader
+	validates :name,:description,:price,:image,presence: true
 end

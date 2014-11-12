@@ -8,7 +8,6 @@ class OrdersController < ApplicationController
 	end
 	
 	def create
-		binding.pry
 		user_id = current_user.id
 		remark = params[:order][:remark]
 		address_id = params[:order][:address_id] 
