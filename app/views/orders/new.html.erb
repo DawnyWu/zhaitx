@@ -10,17 +10,16 @@
 			<h3 class="ui black block header">收货人信息</h3>
 			<div id="order_address">
 			</div>
-			<% if current_user.addresses.present? %>
-
-			<%= @address.university %>
-			<%= @address.campus %>
-			<%= @address.location %><br/>
-			<%= @address.user_name %>
-			<%= @address.phone_number %><br>
-
-			<%= link_to "修改配送地址",select_address_path %>
+			<% if @address.present? %>
+				<%= @address.university %>
+				<%= @address.campus %>
+				<%= @address.location %><br/>
+				<%= @address.user_name %>
+				<%= @address.phone_number %><br>
+				<%= link_to "修改配送地址",select_address_path %>
+				<%= hidden_field :order,:address_id,value: @address.id %>
 			<% else %>
-
+    
 			<div id="order_create_from">
 				<h2>创建配送地址</h2>
 

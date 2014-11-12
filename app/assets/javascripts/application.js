@@ -17,4 +17,11 @@
 //= require semantic-ui
 //= require nprogress
 //= require nprogress-turbolinks
-
+<script type="text/javascript">
+  $('.ui.dropdown').dropdown();
+</script>
+<% content_for :javascript do%>
+<script type="text/javascript">
+  $('.ui.dropdown').dropdown();
+</script>
+<% end %>

@@ -27,7 +27,7 @@
 			  <i class="icon dropdown"></i>
 
 				<div class="menu">
-		      <%= link_to "我的订单","#",class: "item" %>		
+		      <%= link_to "我的订单",orders_path,class: "item" %>		
 		      <%= link_to "个人资料","#",class: "item" %>		
 	  			<%= link_to destroy_user_session_path, method: :delete, class: "item" do %>
 						登出
