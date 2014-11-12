@@ -7,9 +7,7 @@
 		<%= address.location %><br/>
 		<%= address.user_name %>
 		<%= address.phone_number %><br/>
-		<button class="ui mini red button">
-		配送到这个地址
-		</button><br/>
+		<%= link_to "配送到这个地址",orders_new_path(address_id: address.id),class: "ui mini red button" %><br/>
 	<% end %>
 <%= link_to "创建新的地址",new_address_path %>
 <% else %>

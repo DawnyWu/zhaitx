@@ -1,7 +1,7 @@
 class OrdersController < ApplicationController
 
 	def new
-		@address = Address.find(1);
+		@address = Address.find(params[:address_id])
 	end
 	
 	def create

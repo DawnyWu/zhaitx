@@ -12,16 +12,13 @@
 			</div>
 			<% if current_user.addresses.present? %>
 
-			<% current_user.addresses.each do |address| %>
-			<%= address.university %>
-			<%= address.campus %>
-			<%= address.location %><br/>
-			<%= address.user_name %>
-			<%= address.phone_number %><br>
-			<%#= hidden_field_tag :order,:address_id,value: address.id %>
-			<% end %>
+			<%= @address.university %>
+			<%= @address.campus %>
+			<%= @address.location %><br/>
+			<%= @address.user_name %>
+			<%= @address.phone_number %><br>
 
-			<%= link_to "修改配送地址" %>
+			<%= link_to "修改配送地址",select_address_path %>
 			<% else %>
 
 			<div id="order_create_from">
