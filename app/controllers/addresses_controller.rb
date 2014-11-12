@@ -8,7 +8,6 @@ class AddressesController < ApplicationController
 	end
 
 	def create
-		binding.pry
 		@address = Address.new(address_params)
 		@address.save
 		# redirect_to controller: "orders",action: "new"
