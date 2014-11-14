@@ -18,6 +18,10 @@
 //= require nprogress
 //= require nprogress-turbolinks
 $(document).ready(function(){
+	// $('.ui.menu').on('click','a',function () {
+    
+	//   $(this).addClass("active");
+	// })
 	$('.ui.dropdown').dropdown();
 })
 

@@ -65,14 +65,6 @@
 <% end %>
 <h3 class="ui black block header">商品清单</h3>
 <table class="ui table segment">
-	<thead>
-		<!-- image -->
-		<!-- <th>商品图片</th> -->
-		<!-- product name -->
-<!-- 		<th>商品名称</th>
-		<th>价格</th>
-		<th>数量</th> -->
-	</thead>
 	<tbody>
 		<% cart_products.each do |product,i|%>
 		<tr data-id=<%= product.id %> >
@@ -87,7 +79,7 @@
 <h4 class="ui right aligned header">
 	总共 <%= cart_quantity %> 件商品，
 	商品总金额: <%= cart_amount %>
-	<%= link_to "修改购物车商品" %>
+	<%= link_to "修改购物车商品",cart_path%>
 </h4>
 <h3 class="ui black block header">附言</h3>
 <div class="ui form">
@@ -98,7 +90,6 @@
 
 
 <%= submit_tag "提交订单",class: "ui red button" %>
-<%= link_to "提交订单",create_order_path,method: :post,class: "ui red button" %>
 <% end %>
 </div>
 </div>
@@ -109,11 +100,6 @@
 
 </div>
 </div>
-current_user address size:<%= current_user.addresses.size %><br/>
-current_user id:<%= current_user.id %><br/>
-current_user_cart: <%= current_user_cart %><br>
-cart_quantity: <%= cart_quantity %> <br>
-cart_amount: <%= cart_amount %> <br>
-cart_products species : <%= cart_products.size %>
+
 
 

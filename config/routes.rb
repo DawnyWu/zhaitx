@@ -1,7 +1,10 @@
 Rails.application.routes.draw do
+  get 'meals/index',to: 'meals#index',as: :meals
+
   get 'orders/new',as: :orders_new
   get 'orders/create'
   get 'orders',to: 'orders#index',as: :orders
+  # get 'cafeteria',to: 'cafeterias#index',as: :cafeterias
 
   get 'orders/:order_id/show',to: 'orders#show',as: :show_order
 
